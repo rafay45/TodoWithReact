@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { TodoContextProvider } from './context/TodoContext'
 
@@ -17,6 +17,18 @@ function App() {
   const ToggleTodo = (id) => {
     setTodos((prevToggle) => prevToggle.map((prevValue) => prevValue === id ? { ...prevValue, checked: !prevValue.checked } : prevValue))
   }
+
+  useEffect(() => {
+   const getTodos = JSON.parse(localStorage.getItem('reactTodo'))
+
+   if(getTodos && getTodos.length > 0){
+    setTodos(getTodos)
+   }
+  }, [])
+  
+  useEffect(() =>{
+    localStorage.setItem('reactTodo', JSON.stringify(todos))
+  }, [todos])
   return (
     <TodoContextProvider value={{ todos, addTodo, deleteTodo, editTodo, ToggleTodo }}>
       <div className="bg-[#172842] min-h-screen py-8">
