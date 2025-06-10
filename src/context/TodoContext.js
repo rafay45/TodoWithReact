@@ -8,10 +8,10 @@ export const createTodoContext = createContext({
             checked: false
         }
     ],
-    addTodo: (todo) => {},
-    editTodo: (id , todo) => {}, 
-    deleteTodo: (id) => {},
-    ToggleTodo: (id) => {}
+    addTodo: (todo) => { },
+    editTodo: (id, todo) => { },
+    deleteTodo: (id) => { },
+    toggleTodo: (id) => { }
 })
 
 export const TodoContextProvider = createTodoContext.Provider
